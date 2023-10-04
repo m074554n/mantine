@@ -1,7 +1,7 @@
 {
   "name": "@mantine/dropzone",
   "description": "Dropzone component built with Mantine theme and components",
-  "version": "7.1.0",
+  "version": "7.1.2",
   "main": "./cjs/index.js",
   "types": "./lib/index.d.ts",
   "module": "./esm/index.mjs",
@@ -44,13 +44,13 @@
     "upload"
   ],
   "peerDependencies": {
-    "@mantine/core": "7.1.0",
-    "@mantine/hooks": "7.1.0",
+    "@mantine/core": "7.1.2",
+    "@mantine/hooks": "7.1.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "dependencies": {
-    "react-dropzone": "14.2.3"
+    "react-dropzone-esm": "15.0.1"
   },
   "devDependencies": {}
 }

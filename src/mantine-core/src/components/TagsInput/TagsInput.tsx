@@ -229,7 +229,7 @@ export const TagsInput = factory<TagsInputFactory>((_props, ref) => {
       event.preventDefault();
     }
 
-    if (event.key === 'Enter' && length > 0) {
+    if (event.key === 'Enter' && length > 0 && !event.nativeEvent.isComposing) {
       event.preventDefault();
       const isDuplicate = _value.some((tag) => tag.toLowerCase() === inputValue.toLowerCase());
 
@@ -238,6 +238,7 @@ export const TagsInput = factory<TagsInputFactory>((_props, ref) => {
       }
 
       if ((!isDuplicate || (isDuplicate && allowDuplicates)) && _value.length < maxTags!) {
+        onOptionSubmit?.(inputValue);
         setSearchValue('');
 
         if (inputValue.length > 0) {

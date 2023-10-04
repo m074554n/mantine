@@ -53,7 +53,7 @@ export default async function createPackageConfig(config: PkgConfigInput): Promi
       minimize: true,
     }),
     banner((chunk) => {
-      if (chunk.fileName === 'index.js' || chunk.fileName === 'index.mjs') {
+      if (chunk.fileName !== 'index.js' && chunk.fileName !== 'index.mjs') {
         return "'use client';\n";
       }
 
@@ -105,20 +105,6 @@ export default async function createPackageConfig(config: PkgConfigInput): Promi
     output.dir = path.resolve(config.basePath, 'cjs');
     output.preserveModules = true;
     output.exports = 'named';
-  }
-
-  if (config.format === 'umd') {
-    output.file = path.resolve(config.basePath, 'lib/index.umd.js');
-    output.globals = {
-      ...pkgList
-        .map((pkg) => ({
-          [pkg.packageJson.name]: pkg.packageJson.name,
-        }))
-        .reduce((globals, pkgGlobal) => ({ ...globals, ...pkgGlobal }), {}),
-      react: 'React',
-      dayjs: 'dayjs',
-      'react-dom': 'ReactDOM',
-    };
   }
 
   if (config.analyze && config.format === 'es') {
